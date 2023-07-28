@@ -15,7 +15,7 @@ public class Account {
 		balance = 0.0;
 	}
 	
-	//parameterize constructor
+	//parameterize constructor 
 	public Account(int accno, String accnm, String acctype, double balance) {
 		super();
 		this.accno = accno;
