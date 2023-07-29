@@ -31,6 +31,8 @@
 		<br>
 		<a href="newuser">Register New User</a>
 		<hr>
+		<a href="product">Perform operation on Products</a>
+		<hr>
 		&copy;kapilkk2023
 	</div>
 </body>

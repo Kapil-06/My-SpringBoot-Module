@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kapil.Firstdemo.entities.Car;
+import com.kapil.Firstdemo.entities.Product;
 import com.kapil.Firstdemo.entities.User;
 import com.kapil.Firstdemo.services.CarServices;
+import com.kapil.Firstdemo.services.ProductServices;
 import com.kapil.Firstdemo.services.UserServices;
 
 @Controller
@@ -21,6 +23,9 @@ public class FirstController {
 	
 	@Autowired
 	CarServices cs;
+	
+	@Autowired
+	ProductServices ps;
 	
 	@GetMapping("/")
 	public String home(){
@@ -69,6 +74,29 @@ public class FirstController {
 		ArrayList<Car> list=cs.showCarReport();
 		mv.setViewName("carreport.jsp");
 		mv.addObject("carlist", list);
+		return mv;
+	}
+	
+	@GetMapping("/product")
+	public String productsOperation() {
+		return "productpage.jsp";
+	}
+	
+	@PostMapping("/addProduct")
+	public String addProduct(Product p) {
+		String status=ps.addcar(p);
+		if(status.equals("success"))
+			return "ProductAddedSuccess.jsp";
+		else
+			return "ProductAddedFailed.jsp";
+	}
+	
+	@GetMapping("/productdetail")
+	public ModelAndView showProduct() {
+		ModelAndView mv=new ModelAndView();
+		ArrayList<Product> list=ps.getPrductData();
+		mv.setViewName("productReport.jsp");
+		mv.addObject("data", list);
 		return mv;
 	}
 }
