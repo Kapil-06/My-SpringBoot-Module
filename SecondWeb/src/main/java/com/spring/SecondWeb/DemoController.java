@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.SecondWeb.Services.AccountServices;
 import com.spring.SecondWeb.Services.UserService;
 import com.spring.SecondWeb.entities.Accounts;
+import com.spring.SecondWeb.entities.Celebrity;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -29,11 +30,37 @@ public class DemoController {
 	}
 	
 	@PostMapping("/login")
-	public String userLogin(String userid, String pass, HttpSession ses) {
+	public ModelAndView userLoginAuthentication(String userid, String pass, HttpSession ses) {
 		String stat="";
 		stat=us.checkUsers(userid, pass);
 		ses.setAttribute("uid", userid);
-		return stat;
+		String email="kapilkadu123@gmail.com";
+		String mobno="9874651230";
+		String address="Chandrapur Maharashtra";
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("mail", email);
+		mv.addObject("mob", mobno);
+		mv.addObject("add", address);
+		mv.setViewName(stat);
+		
+		Celebrity cel=new Celebrity();
+		cel.setName("Vijay Thalapati");
+		cel.setMob("5879641235");
+		cel.setAge(35);
+		cel.setCountry("India");
+		cel.setRating(4.8);
+		mv.addObject("celebrity", cel);
+		return mv;
+	}
+	
+	@GetMapping("/showfilm")
+	public ModelAndView showFilm(String filmnm, String actor, String actress) {
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("fname", filmnm);
+		mv.addObject("actor", actor);
+		mv.addObject("actress", actress);
+		mv.setViewName("filminfo.jsp");
+		return mv;
 	}
 	
 	@GetMapping("/accountreport")

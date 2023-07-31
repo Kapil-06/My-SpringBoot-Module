@@ -10,10 +10,37 @@
 <body style="margin-top:50px">
 	<div class="container">
 	<h2 style="color: lightseagreen;">Your Home Page </h2>
-	<hr><br>
+	<hr>
+	<a href="/">Home</a>
+	<br>
     Welcome <%=session.getAttribute("uid") %>
     <br>
-    <a href="/">Home</a>
+    Email : ${mail}
+    <br>
+    Mobile no : ${mob}
+    <br>
+    Address : ${add}
+    
+    <hr>
+    <br>
+    <h4><b>Celebrity Information</b></h4>
+    
+    <table class="table table-bordered">
+    	<tr style="background-color:lightblue">
+    		<th>Name</th>
+    		<th>Mobile</th>
+    		<th>Age</th>
+    		<th>Country</th>
+    		<th>Rating</th>
+    	</tr>
+        <tr>
+            <td>${celebrity.name}</td>
+            <td>${celebrity.mob}</td>
+            <td>${celebrity.age}</td>
+            <td>${celebrity.country}</td>
+            <td>${celebrity.rating}</td>
+        </tr>
+    </table>
     </div>
 </body>
 </html>
