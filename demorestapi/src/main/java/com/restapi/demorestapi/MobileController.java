@@ -24,6 +24,7 @@ public class MobileController {
 		return obj;
 	}
 	
+	// All Mobile data retrieve from DB 
 	@GetMapping("/mob/data/all")
 	public ArrayList<Mobile> showMobList(){
 		
@@ -32,6 +33,7 @@ public class MobileController {
 		return list;
 	}
 	
+	// Mobile list retrieve by providing company 
 	// http://localhost:8080/api/mob/search/company/vivo
 	@GetMapping("/mob/search/company/{company}")
 	public ArrayList<Mobile> showMobByCompany(@PathVariable String company){
@@ -39,13 +41,27 @@ public class MobileController {
 		return list;
 	}
 	
-	
+	// Mobile data search by providing company and ram as input 
 	// http://localhost:8080/api/mob/search/company/vivo/6GB
 	@GetMapping("/mob/search/company/{company}/{ram}")
 	public ArrayList<Mobile> showMobByCompAndRam(@PathVariable String company,@PathVariable String ram){
-		
 		ArrayList<Mobile> list=ms.getMobByCompAndRam(company,ram);
 		return list;
 	}
 	
+	// Mobile data search by providing Connectivity 
+	// http://localhost:8080/api/mob/search/connectivity/4G or 5G
+	@GetMapping("/mob/search/connectivity/{connectivity}")
+	public ArrayList<Mobile> showMobByConnectivity(@PathVariable String connectivity){
+		ArrayList<Mobile> list=ms.getMobDataByConnectivity(connectivity);
+		return list;
+	}
+	
+	// Mobile data searched by price in between particular range
+	// http://localhost:8080/api/mob/search/price/15000
+	@GetMapping("/mob/search/price/{price1}/{price2}")
+	public ArrayList<Mobile> showMobByPriceRange(@PathVariable float price1, @PathVariable float price2){
+		ArrayList<Mobile> list=ms.getMobByPriceRange(price1, price2);
+		return list;
+	}
 }
