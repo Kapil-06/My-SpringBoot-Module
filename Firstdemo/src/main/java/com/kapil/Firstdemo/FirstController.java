@@ -99,4 +99,14 @@ public class FirstController {
 		mv.addObject("data", list);
 		return mv;
 	}
+	
+	@GetMapping("/searchByCompany")
+	public ModelAndView SearchByComp(String company) {
+		System.out.println(company);
+		ModelAndView mv=new ModelAndView();
+		ArrayList<Product> list=ps.getDataByComp(company);
+		mv.setViewName("productReport.jsp");
+		mv.addObject("data", list);
+		return mv;
+	}
 }

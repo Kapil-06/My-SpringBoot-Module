@@ -71,4 +71,38 @@ public class ProductServices {
 		}
 		return list;
 	}
+	
+	//retrieve data from product by providing company name as input
+	public ArrayList<Product> getDataByComp(String comp){
+		
+		ArrayList<Product> list=new ArrayList<>();
+		Product p;
+		Connection con;
+		PreparedStatement pst;
+		ResultSet rs;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://bhod7pw8rcgxeqwgoffi-mysql.services.clever-cloud.com:3306/bhod7pw8rcgxeqwgoffi?user=ukdmlq4nnteyuvfo&password=stZ2gABP50qLdTH0RS3Q");
+				
+			pst=con.prepareStatement("Select * from products where company=?");
+			pst.setString(1, comp);
+			rs=pst.executeQuery();
+			
+			while(rs.next()) {
+				p=new Product();
+				p.setProdid(rs.getInt(1));
+				p.setProdnm(rs.getString(2));
+				p.setCompany(rs.getString(3));
+				p.setPrice(rs.getFloat(4));
+				list.add(p);
+				
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		return list;
+	}
+	
 }
