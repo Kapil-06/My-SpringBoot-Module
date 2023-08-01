@@ -230,4 +230,43 @@ public class MobileServices {
 		}
 		return list;
 	}
+	
+	
+	//Function 6 (to insert mobile data in database)
+	public String addMobileData(Mobile obj) {
+		
+		Connection con;
+		PreparedStatement pst;
+		String status="failed";
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://bhod7pw8rcgxeqwgoffi-mysql.services.clever-cloud.com:3306/bhod7pw8rcgxeqwgoffi?user=ukdmlq4nnteyuvfo&password=stZ2gABP50qLdTH0RS3Q");
+			 
+			pst=con.prepareStatement("insert into mobiles values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			pst.setInt(1, obj.getProdid());
+			pst.setString(2, obj.getModelname());
+			pst.setString(3, obj.getCompany());
+			pst.setString(4, obj.getConnectivity());
+			pst.setString(5, obj.getRam());
+			pst.setString(6, obj.getRom());
+			pst.setString(7, obj.getColor());
+			pst.setString(8, obj.getScreen());
+			pst.setInt(9, obj.getBattery());
+			pst.setString(10, obj.getProcessor());
+			pst.setFloat(11, obj.getPrice());
+			pst.setDouble(12, obj.getRating());
+			pst.setString(13, obj.getPurpose());
+			int rowinsert=pst.executeUpdate();
+			con.close();
+			if(rowinsert > 0) {
+				status="success";
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		return status;
+	}
+	
 } // class bracket

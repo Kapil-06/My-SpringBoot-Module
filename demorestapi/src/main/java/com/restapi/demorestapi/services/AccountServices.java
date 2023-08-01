@@ -31,7 +31,7 @@ public class AccountServices {
 				obj.setAccno(rs.getInt(1));
 				obj.setAccnm(rs.getString("accnm"));
 				obj.setAcctype(rs.getString("acctype"));
-				obj.setBalance(rs.getDouble(4));
+				obj.setBalance(rs.getFloat(4));
 				list.add(obj);
 			}
 		}
@@ -62,7 +62,7 @@ public class AccountServices {
 				obj.setAccno(rs.getInt(1));
 				obj.setAccnm(rs.getString("accnm"));
 				obj.setAcctype(rs.getString("acctype"));
-				obj.setBalance(rs.getDouble(4));
+				obj.setBalance(rs.getFloat(4));
 			}
 			else {
 				obj.setAccno(no);
@@ -100,7 +100,7 @@ public class AccountServices {
 				obj.setAccno(rs.getInt(1));
 				obj.setAccnm(rs.getString("accnm"));
 				obj.setAcctype(rs.getString("acctype"));
-				obj.setBalance(rs.getDouble(4));
+				obj.setBalance(rs.getFloat(4));
 				list.add(obj);
 			}
 			con.close();
@@ -110,5 +110,33 @@ public class AccountServices {
 			System.out.println(e);
 		}
 		return list;
+	}
+	
+	//Function 4 (Adding account data to the account tables)
+	public String addNewAccData(Account obj) {
+		
+		Connection con;
+		PreparedStatement pst;
+		String status="failed";
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://bhod7pw8rcgxeqwgoffi-mysql.services.clever-cloud.com:3306/bhod7pw8rcgxeqwgoffi?user=ukdmlq4nnteyuvfo&password=stZ2gABP50qLdTH0RS3Q");
+			
+			pst=con.prepareStatement("insert into accounts values(?,?,?,?)");
+			pst.setInt(1, obj.getAccno());
+		    pst.setString(2, obj.getAccnm());
+		    pst.setString(3, obj.getAcctype());
+		    pst.setFloat(4, obj.getBalance());
+		        
+		    int rowsInserted = pst.executeUpdate();
+		    if (rowsInserted > 0) {
+		        status = "success";
+		    }
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		return status;
 	}
 }

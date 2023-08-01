@@ -14,13 +14,13 @@ public class Mobile {
 	private String processor;
 	private float price;
 	private double rating;
-	
+	private String purpose;
 	public Mobile() {
 		
 	}
 	
 	public Mobile(int prodid, String modelname, String company, String connectivity, String ram, String rom,
-			String color, String screen, int battery, String processor, float price, double rating) {
+			String color, String screen, int battery, String processor, float price, double rating, String purpose) {
 		super();
 		this.prodid = prodid;
 		this.modelname = modelname;
@@ -34,6 +34,7 @@ public class Mobile {
 		this.processor = processor;
 		this.price = price;
 		this.rating = rating;
+		this.purpose= purpose;
 	}
 
 	public int getProdid() {
@@ -131,5 +132,12 @@ public class Mobile {
 	public void setRating(double rating) {
 		this.rating = rating;
 	}
-		
+
+	public String getPurpose() {
+		return purpose;
+	}
+
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
+	}		
 }

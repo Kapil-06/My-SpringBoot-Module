@@ -5,18 +5,18 @@ public class Account {
 	private int accno;
 	private String accnm;
 	private String acctype;
-	private double balance;
+	private float balance;
 	
 	//default constructor
 	public Account() {
 		accno = 0;
 		accnm = "";
 		acctype = "";
-		balance = 0.0;
+		balance = 0;
 	}
 	
 	//parameterize constructor 
-	public Account(int accno, String accnm, String acctype, double balance) {
+	public Account(int accno, String accnm, String acctype, float balance) {
 		super();
 		this.accno = accno;
 		this.accnm = accnm;
@@ -48,11 +48,11 @@ public class Account {
 		this.acctype = acctype;
 	}
 
-	public double getBalance() {
+	public float getBalance() {
 		return balance;
 	}
 
-	public void setBalance(double balance) {
+	public void setBalance(float balance) {
 		this.balance = balance;
 	}
 	
