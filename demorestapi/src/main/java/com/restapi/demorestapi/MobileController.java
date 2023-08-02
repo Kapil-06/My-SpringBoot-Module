@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,9 @@ public class MobileController {
 		Mobile obj=new Mobile(72,"vivo Y20","Vivo","4G","3GB","64GB","Nebula Blue","IPS LED", 5000, "Qualcomm Snapdragon 439", 10999,4.0,"null");
 		return obj;
 	}
+	
+	
+	//----------------------------------- GET OPERATION -------------------------------------------------
 	
 	// All Mobile data retrieve from DB 
 	@GetMapping("/mob/data/all")
@@ -67,11 +71,34 @@ public class MobileController {
 		return list;
 	}
 	
+	
+	//----------------------------------- PosT OPERATION -------------------------------------------------
+	
 	// To insert mobile data in mobile database
 	// http://localhost:8080/api/mob/add
 	@PostMapping("/mob/add")
 	public String addNewMob(@RequestBody Mobile m) {
 		String status=ms.addMobileData(m);
+		return status;
+	}
+	
+	//----------------------------------- PUT OPERATION -------------------------------------------------
+	
+	//To Update the mobile data
+	// http://localhost:8080/api/mob/data/update
+	@PutMapping("/mob/data/update")
+	public String updateMobData(@RequestBody Mobile m) {
+		String status="";
+		status=ms.mobDataUpdate(m);
+		return status;
+	}
+	
+	//To Update the mobile data
+	// http://localhost:8080/api/mob/data/modify
+	@PutMapping("/mob/data/modify")
+	public String modifyMobData(@RequestBody Mobile m) {
+		String status="";
+		status=ms.modifyMobData(m);
 		return status;
 	}
 }

@@ -12,5 +12,4 @@ public class DemorestapiApplication {
 		System.out.println("Rest Apis project running...");
 	}
 	
-	
 }

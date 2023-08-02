@@ -139,4 +139,31 @@ public class AccountServices {
 		}
 		return status;
 	}
+	
+	
+	//Function 5(To update account data)
+	public String updateAccount(Account obj) {
+		
+		Connection con;
+		PreparedStatement pst;
+		String status="failed";
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://bhod7pw8rcgxeqwgoffi-mysql.services.clever-cloud.com:3306/bhod7pw8rcgxeqwgoffi?user=ukdmlq4nnteyuvfo&password=stZ2gABP50qLdTH0RS3Q");
+			
+			pst=con.prepareStatement("update accounts set balance=? where accno=?");
+			pst.setFloat(1, obj.getBalance());
+			pst.setInt(2, obj.getAccno());
+			
+			int count=pst.executeUpdate();
+			if(count > 0) {
+				status="success";
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		return status;
+	}
 }

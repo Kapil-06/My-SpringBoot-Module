@@ -269,4 +269,64 @@ public class MobileServices {
 		return status;
 	}
 	
+	
+	//Function 7(To update or modify mobile data in database)
+	public String mobDataUpdate(Mobile mob) {
+		Connection con;
+		PreparedStatement pst;
+		String status="failed";
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://bhod7pw8rcgxeqwgoffi-mysql.services.clever-cloud.com:3306/bhod7pw8rcgxeqwgoffi?user=ukdmlq4nnteyuvfo&password=stZ2gABP50qLdTH0RS3Q");
+			 
+			pst=con.prepareStatement("update mobiles set price=? where modelname=?");
+		
+			pst.setFloat(1, mob.getPrice());
+			pst.setString(2, mob.getModelname());
+			
+			int rowinsert=pst.executeUpdate();
+			con.close();
+			if(rowinsert > 0) {
+				status="success";
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		return status;		
+	}
+	
+	
+	//Function 8(To update or modify ram, rom and connectivity of mobile in database)
+	public String modifyMobData(Mobile mob) {
+		
+		Connection con;
+		PreparedStatement pst;
+		String status="failed";
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://bhod7pw8rcgxeqwgoffi-mysql.services.clever-cloud.com:3306/bhod7pw8rcgxeqwgoffi?user=ukdmlq4nnteyuvfo&password=stZ2gABP50qLdTH0RS3Q");
+			 
+			pst=con.prepareStatement("update mobiles set ram=?, rom=?, connectivity=?, price=? where modelname=?");
+			pst.setString(1, mob.getRam());
+			pst.setString(2, mob.getRom());
+			pst.setString(3, mob.getConnectivity());
+			pst.setFloat(4, mob.getPrice());
+			pst.setString(5, mob.getModelname());
+			
+			int count=pst.executeUpdate();
+			con.close();
+			if(count > 0) {
+				status="success";
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			status="failed";
+		}
+		return status;
+	}
+	
 } // class bracket
