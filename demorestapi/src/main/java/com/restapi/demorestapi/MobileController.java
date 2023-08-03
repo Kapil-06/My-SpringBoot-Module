@@ -3,12 +3,14 @@ package com.restapi.demorestapi;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restapi.demorestapi.entities.Mobile;
@@ -99,6 +101,16 @@ public class MobileController {
 	public String modifyMobData(@RequestBody Mobile m) {
 		String status="";
 		status=ms.modifyMobData(m);
+		return status;
+	}
+	
+	//--------------------------------- DELETE OPERATION --------------------------------------------------
+	
+	// To delete mobile from database
+	// http://localhost:8080/api/mob/delete
+	@DeleteMapping("/mob/delete")
+	public String mobDelete(@RequestParam String modelname) {
+		String status=ms.deleteMob(modelname);
 		return status;
 	}
 }

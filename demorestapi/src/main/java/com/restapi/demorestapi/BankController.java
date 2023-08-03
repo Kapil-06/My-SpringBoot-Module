@@ -3,12 +3,14 @@ package com.restapi.demorestapi;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restapi.demorestapi.entities.Account;
@@ -96,4 +98,17 @@ public class BankController {
 		status=as.updateAccount(a);
 		return status;
 	}
+	
+	//---------------------------------- DELETE OPERATION ----------------------------------------------
+	
+	// To delete account
+	// http://localhost:8080/api/acc/delete
+	@DeleteMapping("/acc/delete")
+	public String accDelete(@RequestParam int accno) {
+		String status=as.deleteAcc(accno);
+		return status;
+	}
+	
+	
+	
 }

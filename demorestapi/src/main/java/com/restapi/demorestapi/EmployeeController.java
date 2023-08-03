@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restapi.demorestapi.entities.Employee;
@@ -62,6 +64,13 @@ public class EmployeeController {
 	@PutMapping("/emp/loc/modify")
 	public String empLocUpdate(@RequestBody Employee e) {
 		String status=es.empLocModify(e);
+		return status;
+	}
+	
+	//http://localhost:8080/api/emp/delete
+	@DeleteMapping("/emp/delete")
+	public String empDelete(@RequestParam int empno) {
+		String status=es.deleteEmployee(empno);
 		return status;
 	}
 }

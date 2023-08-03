@@ -175,4 +175,33 @@ public class EmployeeServices {
 		}
 		return status;
 	}
+	
+	//function 6 (to delete the employee from table)
+	public String deleteEmployee(int empno) {
+		
+		Connection con;
+		PreparedStatement pst;
+		String status="failed";
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://bhod7pw8rcgxeqwgoffi-mysql.services.clever-cloud.com:3306/bhod7pw8rcgxeqwgoffi?user=ukdmlq4nnteyuvfo&password=stZ2gABP50qLdTH0RS3Q");
+			
+			pst=con.prepareStatement("Delete from employee where empno=?");
+			pst.setInt(1, empno);
+			
+			int count=pst.executeUpdate();
+			if(count > 0) {
+				status="success";
+			}
+			else {
+				status="not found";
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);	
+		}
+		return status;
+	}
+		
 }
