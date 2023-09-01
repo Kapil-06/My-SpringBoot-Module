@@ -11,7 +11,9 @@
     <div class="container">Ohhhh!!!! No  Failed</div>
     <hr>
     <br>
-    <a href="AddNewFilms.jsp">Retry</a>
+    Add New Films -> <a href="AddNewFilms.jsp">Retry</a>
+    <br>
+    Delete Films -> <a href="DeleteFilm.jsp">Retry</a>
 
 </body>
 </html>

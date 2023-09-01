@@ -238,8 +238,8 @@ font-size: 2em;
   <a href="/admin" class="icon-a"><i class="fa fa-home icons"></i>   HOME</a>
   <a href="addfilm"class="icon-a"><i  class="fa fa-upload"></i>   ADD FILMS</a>
   <a href="/modify"class="icon-a"><i class="fa fa-list icons"></i>   MODIFY</a>
-  <a href="#"class="icon-a"><i class="fa fa-search" ></i>   SEARCH & REPORT</a>
-  <a href="#"class="icon-a"><i class="fa fa-trash icons"></i>   DELETE FILM</a>
+  <a href="srchfilmdata.jsp"class="icon-a"><i class="fa fa-search" ></i>   SEARCH & REPORT</a>
+  <a href="DeleteFilm.jsp"class="icon-a"><i class="fa fa-trash icons"></i>   DELETE FILM</a>
   <a href="#"class="icon-a"><i class="fa fa-user icons"></i>   PROFILE</a>
   <a href="#"class="icon-a" disable><i class="fa fa-list-alt icons"></i>   Tasks</a>
 
